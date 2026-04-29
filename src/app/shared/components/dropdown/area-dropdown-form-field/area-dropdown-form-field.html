@@ -1,0 +1,24 @@
+<div class="flex flex-col gap-1">
+  <label for="names" class="text-sm font-medium flex items-start"
+    >{{ label }}
+    @if (isRequired) {
+      <span class="flex text-[#ef4343] items-center ml-1 self-center">*</span>
+    }
+  </label>
+  <p-select
+    [options]="organizationalUnit()"
+    [checkmark]="true"
+    optionLabel="name"
+    optionValue="id"
+    [showClear]="true"
+    [placeholder]="placeholder"
+    styleClass="w-full h-14 rounded-xl  mt-2 input-like-select"
+    [invalid]="isInvalid()"
+    [formControl]="control"
+    [appendTo]="'body'"
+  />
+
+  @if (isInvalid()) {
+    <p-message severity="error" size="small" variant="simple">Unidad es requerida.</p-message>
+  }
+</div>

@@ -1,0 +1,71 @@
+<header class="bg-white border-b border-gray-200 px-8 py-1 flex items-center justify-between">
+  <div class="layout-topbar-logo-container">
+    <button
+      class="layout-menu-button layout-topbar-action ml-4 cursor-pointer"
+      (click)="layoutService.onMenuToggle()"
+    >
+      <i class="pi pi-bars"></i>
+    </button>
+  </div>
+  <div class="flex items-center justify-end space-x-4">
+    <button class="p-2 hover:bg-gray-100 rounded-lg transition-colors relative">
+      <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+        />
+      </svg>
+    </button>
+    <div
+      class="hover py-2 px-3 cursor-pointer rounded-md inline-flex items-center gap-3"
+      (click)="menu.show($event); $event.stopPropagation()"
+    >
+      <p-avatar
+        [label]="initialLetter"
+        class="mr-2 cursor-pointer layout-topbar-button"
+        [style]="{
+          'background-color': '#9c27b0',
+          color: '#ffffff',
+          width: '2.5rem',
+          height: '2.5rem',
+        }"
+        shape="circle"
+      ></p-avatar>
+      <div class="flex flex-col items-start">
+        <span class="text-sm font-bold leading-none">{{ firstName }} {{ surname }}</span>
+        <span>{{ user.email }}</span>
+      </div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="lucide lucide-chevron-down h-4 w-4 text-muted-foreground"
+      >
+        <path d="m6 9 6 6 6-6"></path>
+      </svg>
+    </div>
+
+    <p-menu #menu [model]="items" [popup]="true" appendTo="body">
+      <ng-template #start>
+        <section
+          class="right-0 mt-[17px] flex w-[260px] flex-col rounded-2xl bg-white p-3 shadow-theme-lg dark:bg-gray-dark"
+        >
+          <div>
+            <span class="block text-theme-sm font-semibold !text-gray-700">
+              {{ user.names }} {{ surname }}
+            </span>
+            <span class="mt-0.5 block text-theme-xs !text-gray-500">{{ user.email }}</span>
+          </div>
+        </section>
+      </ng-template>
+    </p-menu>
+  </div>
+</header>

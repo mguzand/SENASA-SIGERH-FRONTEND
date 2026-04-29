@@ -1,0 +1,4 @@
+.bg-c {
+  color: aliceblue;
+  background-color: color-mix(in oklab, #232f43 50%, transparent);
+}

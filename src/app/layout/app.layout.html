@@ -1,0 +1,26 @@
+<p-toast key="dashboard-toast"></p-toast>
+
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  name="dashboard-loading"
+  size="medium"
+  color="#fff"
+  type="ball-scale"
+  [fullScreen]="true"
+  ><p style="color: white">Cargando...</p></ngx-spinner
+>
+
+<div class="flex h-screen bg-[#f8fafc]">
+  <app-sidebar class="flex"></app-sidebar>
+  <main
+    class="flex-1 flex flex-col transform transform transition-transform duration-3000 ease-in-out"
+  >
+    <app-topbar></app-topbar>
+    <!-- Content Area -->
+    <div class="flex-col flex-1 overflow-y-auto h-full items-center overflow-auto">
+      <div class="max-w-7xl mx-auto flex flex-col p-6">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </main>
+</div>

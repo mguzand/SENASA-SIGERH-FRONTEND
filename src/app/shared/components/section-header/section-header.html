@@ -1,0 +1,22 @@
+<div class="flex items-start justify-between mb-8 pt-2">
+  <div class="flex items-center gap-4">
+    <div class="w-12 h-12 rounded-xl bg-[#0b64f41a] flex items-center justify-center">
+      <i class="pi {{ icons }} text-xl text-primary"></i>
+    </div>
+    <div>
+      <h1 class="text-2xl font-display font-bold text-foreground">{{ titleHeader }}</h1>
+      <p class="text-[#65758b] mt-1 text-[16px]">
+        {{ description }}
+      </p>
+    </div>
+  </div>
+  <div class="flex items-center justify-center gap-3 self-center">
+    <button
+      (click)="goBack()"
+      class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium [--tw-ring-offset-color:#f9fafb] transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-[#e1e7ef] h-10 px-4 py-2 gap-2 hover:bg-[#233652] cursor-pointer hover:text-white"
+    >
+      <i class="pi pi-arrow-left"></i>
+      Volver
+    </button>
+  </div>
+</div>

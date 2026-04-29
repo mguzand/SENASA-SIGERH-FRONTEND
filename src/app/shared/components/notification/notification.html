@@ -1,0 +1,65 @@
+<div class="modal-content bg-white rounded-lg transition-transform transform">
+  <div class="modal-header flex items-center justify-between p-4 border-b border-gray-200">
+    <h4 class="modal-title text-lg font-semibold text-red-600">Alerta</h4>
+    <div class="flex items-center">
+      <button
+        type="button"
+        class="btn-close text-gray-500 hover:text-red-600 transition-colors duration-200"
+      ></button>
+      <svg
+        class="w-6 h-6 text-gray-500 hover:text-red-600 ml-2 cursor-pointer"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+        (click)="closeModal()"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"
+        />
+      </svg>
+    </div>
+  </div>
+  <div class="modal-body p-4">
+    <div class="flex items-center mb-4">
+      <svg
+        class="w-8 h-8 text-red-600 mr-2"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M12 9v2m0 4h.01M21 12c0 4.97-4.03 9-9 9S3 16.97 3 12 7.03 3 12 3s9 4.03 9 9z"
+        />
+      </svg>
+      <div class="w-full">
+        <p class="text-gray-700 text-lg w-full">Este empleado(a) ya se encuentra registrado.</p>
+        <span
+          ><strong
+            >{{ data.person.firstName }} {{ data.person.middleName }} {{ data.person.lastName }}
+            {{ data.person.secondLastName }}</strong
+          ></span
+        >
+      </div>
+    </div>
+    <ul class="list-disc list-inside pl-5 space-y-2">
+      <li>Ve al apartado <strong>Empleados > Gestión de empleados</strong></li>
+      <li>
+        O
+        <a
+          (click)="closeModal()"
+          [routerLink]="['/employees', 'detail', data.person.id]"
+          class="text-blue-500 hover:underline font-semibold cursor-pointer"
+          >haz clic aquí</a
+        >
+      </li>
+    </ul>
+  </div>
+</div>

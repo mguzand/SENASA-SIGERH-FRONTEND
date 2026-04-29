@@ -1,0 +1,4 @@
+.layout-static-inactive {
+                    transform: translateX(-100%);
+                    left: 0;
+                }

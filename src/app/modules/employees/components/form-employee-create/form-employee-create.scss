@@ -1,0 +1,84 @@
+:host ::ng-deep .custom-datepicker .p-inputtext {
+  height: 56px; /* h-14 */
+  border-radius: 12px; /* rounded-xl */
+  // border: 1px solid #cbd5e1; /* slate-300 */
+  padding-left: 1rem;
+  padding-right: 1rem;
+  color: #475569; /* slate-600 */
+}
+
+/* ICONO CALENDARIO */
+:host ::ng-deep .custom-datepicker .p-datepicker-trigger {
+  width: 3rem;
+  border: none;
+  background: transparent;
+  color: #64748b;
+}
+
+*:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.p-focus {
+  box-shadow: none !important;
+}
+
+/* CONTENEDOR */
+:host ::ng-deep .custom-datepicker .p-datepicker {
+  width: 100%;
+}
+
+/* HOVER */
+// :host ::ng-deep .custom-datepicker .p-inputtext:hover {
+//   border-color: #94a3b8;
+// }
+
+/* FOCUS */
+:host ::ng-deep .custom-datepicker .p-inputtext:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 1px #3b82f6;
+}
+
+/* DISABLED */
+:host ::ng-deep .custom-datepicker .p-inputtext:disabled {
+  background: #f8fafc;
+  color: #94a3b8;
+}
+
+:host ::ng-deep .custom-inputmask .p-inputtext {
+  height: 56px; /* h-14 */
+  border-radius: 12px; /* rounded-xl */
+  border: 1px solid #cbd5e1; /* slate-300 */
+  padding-left: 1rem;
+  padding-right: 1rem;
+  // color: #475569; /* slate-600 */
+  width: 100%;
+}
+
+:host ::ng-deep .p-inputtext.p-invalid {
+  border-color: #f87171 !important;
+}
+
+/* HOVER */
+// :host ::ng-deep .custom-inputmask .p-inputtext:hover {
+//   border-color: #94a3b8;
+// }
+
+/* FOCUS */
+// :host ::ng-deep .custom-inputmask .p-inputtext:focus {
+//   border-color: #3b82f6;
+//   box-shadow: 0 0 0 1px #3b82f6;
+//   outline: none;
+// }
+
+/* ERROR */
+:host ::ng-deep .custom-inputmask.p-invalid .p-inputtext {
+  border-color: #ef4444;
+}
+
+/* DISABLED */
+:host ::ng-deep .custom-inputmask .p-inputtext:disabled {
+  background: #f8fafc;
+  color: #94a3b8;
+}

@@ -1,0 +1,799 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" autocomplete="off">
+  <section class="bg-card rounded-2xl border border-border shadow-sm overflow-hidden mb-4">
+    <div
+      class="flex items-start justify-between gap-3 px-6 pt-5 pb-4 border-b border-border/60 flex-wrap"
+    >
+      <div class="flex items-center gap-2.5">
+        <i class="pi pi-user text-primary text-lg"></i>
+        <div>
+          <h2 class="text-base font-semibold text-primary">Información Personal</h2>
+          <p class="text-xs text-muted-foreground mt-0.5">
+            Datos básicos de identificación del empleado
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="pt-0 grid gap-4 md:grid-cols-3 pt-6 px-6 pb-6">
+      <div class="flex flex-col gap-1">
+        <label for="names" class="text-sm font-medium flex items-start"
+          >Numero de identidad
+          @if (isRequired('dni')) {
+            <span class="flex text-[#ef4343] items-center ml-1 self-center">*</span>
+          }
+        </label>
+        <p-inputMask
+          mask="9999999999999"
+          placeholder="Ej: 1201000010000"
+          inputId="dni"
+          autocomplete="off"
+          [autoClear]="false"
+          [invalid]="isInvalid('dni')"
+          (keyup)="onSearchUserByDni()"
+          slotChar=""
+          formControlName="dni"
+          class="w-full mt-2 custom-inputmask"
+          type="text"
+          name="dni"
+          id="dni"
+        />
+        @if (isInvalid('dni')) {
+          <p-message severity="error" size="small" variant="simple"
+            >Numero de identidad es requerido.</p-message
+          >
+        }
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label for="rtn" class="text-sm font-medium flex items-start"
+          >Numero de rtn
+          @if (isRequired('rtn')) {
+            <span class="flex text-[#ef4343] items-center ml-1 self-center">*</span>
+          }
+        </label>
+        <p-inputMask
+          mask="99999999999999"
+          placeholder="Ej: 1201000010000"
+          class="w-full mt-2 custom-inputmask"
+          inputId="rtn"
+          autocomplete="off"
+          [autoClear]="false"
+          slotChar=""
+          formControlName="rtn"
+          [invalid]="isInvalid('rtn')"
+          type="text"
+          name="rtn"
+          id="rtn"
+        />
+        @if (isInvalid('rtn')) {
+          <p-message severity="error" size="small" variant="simple"
+            >Numero de rtn es requerido.</p-message
+          >
+        }
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label for="firstName" class="text-sm font-medium flex items-start"
+          >Primer nombre
+          @if (isRequired('firstName')) {
+            <span class="flex text-[#ef4343] items-center ml-1 self-center">*</span>
+          }
+        </label>
+        <input
+          pInputText
+          placeholder="Primer nombre"
+          formControlName="firstName"
+          [invalid]="isInvalid('firstName')"
+          class="mt-2 h-14 w-full rounded-xl border border-slate-300 px-4 text-slate-600 outline-none"
+        />
+        @if (isInvalid('firstName')) {
+          <p-message severity="error" size="small" variant="simple"
+            >Primer nombre es requerido.</p-message
+          >
+        }
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label for="middleName" class="text-sm font-medium flex items-start"
+          >Segundo nombre
+          @if (isRequired('middleName')) {
+            <span class="flex text-[#ef4343] items-center ml-1 self-center">*</span>
+          }
+        </label>
+        <input
+          pInputText
+          placeholder="Segundo nombre"
+          class="mt-2 h-14 w-full rounded-xl border border-slate-300 px-4 text-slate-600 outline-none"
+          formControlName="middleName"
+          [invalid]="isInvalid('middleName')"
+        />
+        @if (isInvalid('middleName')) {
+          <p-message severity="error" size="small" variant="simple"
+            >Segundo nombre es requerido.</p-message
+          >
+        }
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label for="lastName" class="text-sm font-medium flex items-start"
+          >Primer apellido
+          @if (isRequired('lastName')) {
+            <span class="flex text-[#ef4343] items-center ml-1 self-center">*</span>
+          }
+        </label>
+        <input
+          pInputText
+          placeholder="Primer apellido"
+          formControlName="lastName"
+          [invalid]="isInvalid('lastName')"
+          class="mt-2 h-14 w-full rounded-xl border border-slate-300 px-4 text-slate-600 outline-none"
+        />
+        @if (isInvalid('lastName')) {
+          <p-message severity="error" size="small" variant="simple"
+            >Primer apellido es requerido.</p-message
+          >
+        }
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label for="secondLastName" class="text-sm font-medium flex items-start"
+          >Segundo apellido
+          @if (isRequired('secondLastName')) {
+            <span class="flex text-[#ef4343] items-center ml-1 self-center">*</span>
+          }
+        </label>
+        <input
+          pInputText
+          placeholder="Segundo apellido"
+          formControlName="secondLastName"
+          [invalid]="isInvalid('secondLastName')"
+          class="mt-2 h-14 w-full rounded-xl border border-slate-300 px-4 text-slate-600 outline-none"
+        />
+
+        @if (isInvalid('secondLastName')) {
+          <p-message severity="error" size="small" variant="simple"
+            >Segundo apellido es requerido.</p-message
+          >
+        }
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label for="names" class="text-sm font-medium flex items-start"
+          >Fecha de Nacimiento
+          @if (isRequired('birth_date')) {
+            <span class="flex text-[#ef4343] items-center ml-1 self-center">*</span>
+          }
+        </label>
+        <p-datepicker
+          formControlName="birth_date"
+          placeholder="20/10/2024"
+          [appendTo]="'body'"
+          [invalid]="isInvalid('birth_date')"
+          inputStyleClass="input-like-datepicker"
+          styleClass="w-full mt-2 custom-datepicker"
+        />
+        @if (isInvalid('birth_date')) {
+          <p-message severity="error" size="small" variant="simple"
+            >Fecha de nacimiento es requerida.</p-message
+          >
+        }
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <app-gender-type-dropdown-form-field
+          label="Género"
+          placeholder="Seleccione un género"
+          inputId="gender"
+          [formSubmitted]="formSubmitted"
+          [control]="getControl('gender')"
+          [isRequired]="isRequired('gender')"
+        />
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <app-marital-status-dropdown-form-field
+          label="Estado Civil"
+          placeholder="Seleccione un estado civil"
+          inputId="marital_status"
+          [formSubmitted]="formSubmitted"
+          [control]="getControl('marital_status')"
+          [isRequired]="isRequired('marital_status')"
+        />
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <app-blood-dropdown-form-field
+          label="Tipo de sangre"
+          placeholder="Seleccione un tipo de sangre"
+          inputId="type_blood"
+          [formSubmitted]="formSubmitted"
+          [control]="getControl('type_blood')"
+          [isRequired]="isRequired('type_blood')"
+        />
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label for="birth_place" class="text-sm font-medium flex items-start"
+          >Lugar de nacimiento
+          @if (isRequired('birth_place')) {
+            <span class="flex text-[#ef4343] items-center ml-1 self-center">*</span>
+          }
+        </label>
+        <input
+          pInputText
+          placeholder="Lugar de nacimiento"
+          formControlName="birth_place"
+          [invalid]="isInvalid('birth_place')"
+          class="mt-2 h-14 w-full rounded-xl border border-slate-300 px-4 text-slate-600 outline-none"
+        />
+        @if (isInvalid('birth_place')) {
+          <p-message severity="error" size="small" variant="simple"
+            >Lugar de nacimiento es requerido.</p-message
+          >
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-card rounded-2xl border border-border shadow-sm overflow-hidden mb-4">
+    <div
+      class="flex items-start justify-between gap-3 px-6 pt-5 pb-4 border-b border-border/60 flex-wrap"
+    >
+      <div class="flex items-center gap-2.5">
+        <i class="pi pi-phone text-primary text-lg"></i>
+        <div>
+          <h2 class="text-base font-semibold text-primary">Información de Contacto</h2>
+          <p class="text-xs text-muted-foreground mt-0.5">Datos para comunicarse con el empleado</p>
+        </div>
+      </div>
+    </div>
+    <div class="pt-0 grid gap-4 md:grid-cols-2 pt-6 px-6 pb-6">
+      <div class="flex flex-col gap-1">
+        <label for="names" class="text-sm font-medium flex items-start"
+          >Celular
+          @if (isRequired('phone')) {
+            <span class="flex text-[#ef4343] items-center ml-1 self-center">*</span>
+          }
+        </label>
+        <p-inputMask
+          mask="(999) 9999-9999"
+          placeholder="Ej: (504) 2222-2222"
+          class="w-full mt-2 custom-inputmask"
+          inputId="phone"
+          autocomplete="off"
+          [autoClear]="false"
+          [invalid]="isInvalid('phone')"
+          slotChar=""
+          formControlName="phone"
+          type="text"
+          name="phone"
+          id="phone"
+        />
+
+        @if (isInvalid('phone')) {
+          @if (form.get('phone')?.errors?.['required']) {
+            <p-message severity="error" size="small" variant="simple"
+              >Celular es requerido.</p-message
+            >
+          }
+          @if (form.get('phone')?.errors?.['pattern']) {
+            <p-message severity="error" size="small" variant="simple"
+              >Formato de celular no valido.</p-message
+            >
+          }
+        }
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label for="names" class="text-sm font-medium flex items-start"
+          >Correo Electrónico
+          @if (isRequired('email')) {
+            <span class="flex text-[#ef4343] items-center ml-1 self-center">*</span>
+          }
+        </label>
+        <input
+          pInputText
+          type="email"
+          id="email"
+          placeholder="info@dominio.com"
+          [invalid]="isInvalid('email')"
+          formControlName="email"
+          class="mt-2 h-14 w-full rounded-xl border border-slate-300 px-4 text-slate-600 outline-none"
+        />
+        @if (isInvalid('email')) {
+          @if (form.get('email')?.errors?.['required']) {
+            <p-message severity="error" size="small" variant="simple"
+              >Correo electrónico es requerido.</p-message
+            >
+          }
+          @if (form.get('email')?.errors?.['email']) {
+            <p-message severity="error" size="small" variant="simple"
+              >Ingrese un correo electrónico válido.</p-message
+            >
+          }
+        }
+      </div>
+
+      <div class="flex flex-col gap-1 md:col-span-2">
+        <label for="names" class="text-sm font-medium flex items-start"
+          >Dirección de casa
+          @if (isRequired('address')) {
+            <span class="flex text-[#ef4343] items-center ml-1 self-center">*</span>
+          }
+        </label>
+
+        <textarea
+          formControlName="address"
+          class="w-full"
+          placeholder="Dirección de vivienda"
+          rows="5"
+          cols="4"
+          pTextarea
+          [invalid]="isInvalid('address')"
+          [autoResize]="true"
+        ></textarea>
+
+        @if (isInvalid('address')) {
+          <p-message severity="error" size="small" variant="simple"
+            >Dirección de vivienda es requerida.</p-message
+          >
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-card rounded-2xl border border-border shadow-sm overflow-hidden mb-4">
+    <div
+      class="flex items-start justify-between gap-3 px-6 pt-5 pb-4 border-b border-border/60 flex-wrap"
+    >
+      <div class="flex items-center gap-2.5">
+        <i class="pi pi-briefcase text-primary text-lg"></i>
+        <div>
+          <h2 class="text-base font-semibold text-primary">Información Laboral</h2>
+          <p class="text-xs text-muted-foreground mt-0.5">
+            Departamento, puesto, contrato y salario
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-0 grid gap-4 md:grid-cols-3 pt-6 px-6 pb-6">
+      <div class="flex flex-col gap-1">
+        <app-unit-types-dropdown-form-field
+          label="Tipo de unidad organizacional"
+          placeholder="Seleccione tipo de unidad organizacional"
+          inputId="no_organizational_type"
+          [control]="getControl('no_organizational_type')"
+          [isRequired]="isRequired('no_organizational_type')"
+        />
+      </div>
+      <div class="flex flex-col gap-1">
+        <app-area-dropdown-form-field
+          label="Unidad organizacional"
+          [organizationalUnits]="selectedOrganizationalUnit"
+          placeholder="Seleccione una unidad"
+          inputId="area_id"
+          [formSubmitted]="formSubmitted"
+          [control]="getControl('area_id')"
+          [isRequired]="isRequired('area_id')"
+        />
+      </div>
+      <div class="flex flex-col gap-1">
+        <app-position-dropdown-field
+          label="Puesto nominal"
+          placeholder="Seleccione un puesto nominal"
+          inputId="nominal_position"
+          [control]="getControl('nominal_position')"
+          [isRequired]="isRequired('nominal_position')"
+        />
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <app-position-dropdown-field
+          label="Puesto funcional"
+          placeholder="Seleccione un puesto funcional"
+          inputId="functional_position"
+          [control]="getControl('functional_position')"
+          [isRequired]="isRequired('functional_position')"
+        />
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <app-status-employees-dropdown-field
+          label="Estado del empleado"
+          placeholder="Seleccione un estado"
+          inputId="status"
+          [control]="getControl('status')"
+          [isRequired]="isRequired('status')"
+        />
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label for="names" class="text-sm font-medium flex items-start"
+          >Fecha de ingreso
+          @if (isRequired('start_date')) {
+            <span class="flex text-[#ef4343] items-center ml-1 self-center">*</span>
+          }
+        </label>
+        <p-datepicker
+          placeholder="20/10/2024"
+          [appendTo]="'body'"
+          formControlName="start_date"
+          styleClass="w-full mt-2 custom-datepicker"
+          [invalid]="isInvalid('start_date')"
+        />
+        @if (isInvalid('start_date')) {
+          <p-message severity="error" size="small" variant="simple"
+            >Fecha de ingreso es requerida.</p-message
+          >
+        }
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label class="text-sm font-medium flex items-start">
+          Salario base (HNL)
+          @if (isRequired('salary')) {
+            <span class="flex text-[#ef4343] items-center ml-1 self-center">*</span>
+          }
+        </label>
+        <p-inputnumber
+          formControlName="salary"
+          mode="decimal"
+          [minFractionDigits]="2"
+          [invalid]="isInvalid('salary')"
+          class="w-full mt-2 custom-inputmask"
+          placeholder="Ej: 250000"
+        />
+        @if (isInvalid('salary')) {
+          <p-message severity="error" size="small" variant="simple">
+            El salario es obligatorio
+          </p-message>
+        }
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <app-schedules-dropdown-field
+          label="Horario empleado"
+          placeholder="Seleccione un horario"
+          inputId="schedule_id"
+          [control]="getControl('schedule_id')"
+          [isRequired]="isRequired('schedule_id')"
+        />
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <app-modalities-dropdown-field
+          label="Modalidad"
+          placeholder="Seleccione una modalidad"
+          inputId="modality_id"
+          [control]="getControl('modality_id')"
+          [isRequired]="isRequired('modality_id')"
+        />
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <app-regional-dropdown-form-field
+          label="Regional"
+          placeholder="Seleccione una regional"
+          inputId="regional_id"
+          [control]="getControl('regional_id')"
+          [isRequired]="isRequired('regional_id')"
+        />
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label for="rtn" class="text-sm font-medium flex items-start"
+          >ID biométrico
+          @if (isRequired('rtn')) {
+            <span class="flex text-[#ef4343] items-center ml-1 self-center">*</span>
+          }
+        </label>
+        <p-inputMask
+          mask="99999"
+          placeholder="ID del reloj marcador"
+          class="w-full mt-2 custom-inputmask"
+          inputId="rtn"
+          autocomplete="off"
+          [autoClear]="false"
+          slotChar=""
+          formControlName="biometric_id"
+          [invalid]="isInvalid('biometric_id')"
+          type="text"
+          name="biometric_id"
+          id="biometric_id"
+        />
+        @if (isInvalid('biometric_id')) {
+          <p-message severity="error" size="small" variant="simple"
+            >ID biométrico es requerido.</p-message
+          >
+        }
+      </div>
+    </div>
+  </section>
+
+  <app-academic-history-form [parentForm]="form"></app-academic-history-form>
+
+  <section class="bg-card rounded-2xl border border-border shadow-sm overflow-hidden mt-4">
+    <div
+      class="flex items-start justify-between gap-3 px-6 pt-5 pb-4 border-b border-border/60 flex-wrap"
+    >
+      <div class="flex items-center gap-2.5">
+        <i class="pi pi-folder text-primary text-lg"></i>
+        <div>
+          <h2 class="text-base font-semibold text-primary">Documentos</h2>
+          <p class="text-xs text-muted-foreground mt-0.5">
+            Currículum, antecedentes penales y otros documentos del empleado
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="px-6 py-6">
+      <input
+        #documentFileInput
+        type="file"
+        hidden
+        accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+        (change)="onDocumentSelected($event)"
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
+        @for (item of documentTypes; track item.type) {
+          <button
+            type="button"
+            [disabled]="isDocumentTypeDisabled(item.type)"
+            (click)="selectDocumentType(item.type, documentFileInput)"
+            class="h-[90px] rounded-2xl border border-dashed border-slate-300 px-5 flex items-center justify-between gap-4 hover:border-primary hover:bg-slate-50 transition text-left disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <div class="flex items-center gap-4">
+              <div
+                class="h-12 w-12 rounded-xl flex items-center justify-center"
+                [ngClass]="item.bg"
+              >
+                <i [class]="item.icon + ' text-lg ' + item.text"></i>
+              </div>
+
+              <div>
+                <h3 class="font-semibold text-slate-900">{{ item.label }}</h3>
+                <p class="text-sm text-slate-500">{{ item.description }}</p>
+              </div>
+            </div>
+
+            <i class="pi pi-cloud-upload text-slate-500"></i>
+          </button>
+        }
+      </div>
+
+      @if (documents.length === 0) {
+        <div
+          class="min-h-[230px] rounded-2xl border border-dashed border-slate-300 flex flex-col items-center justify-center text-center"
+        >
+          <div class="h-14 w-14 rounded-full bg-slate-100 flex items-center justify-center mb-3">
+            <i class="pi pi-inbox text-slate-500 text-xl"></i>
+          </div>
+          <h3 class="font-semibold text-slate-900">Sin documentos cargados</h3>
+          <p class="text-sm text-slate-500 mt-1">Selecciona una categoría para subir archivos</p>
+        </div>
+      }
+
+      @if (documents.length > 0) {
+        <div class="space-y-3">
+          @for (doc of documents; track doc.id) {
+            <div
+              class="rounded-2xl border border-slate-200 px-5 py-4"
+              [ngClass]="documentBorder(doc.type)"
+            >
+              <div class="flex items-start justify-between gap-4">
+                <div class="flex items-start gap-4">
+                  <div
+                    class="h-11 w-11 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center"
+                  >
+                    <i [class]="documentIcon(doc.type) + ' text-slate-600'"></i>
+                  </div>
+
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <p
+                        class="text-[11px] tracking-[0.22em] uppercase text-slate-500 font-semibold"
+                      >
+                        {{ doc.label }}
+                      </p>
+
+                      @if (!doc.saved) {
+                        <span
+                          class="text-[10px] px-2 py-0.5 rounded bg-orange-100 text-orange-600 font-semibold"
+                        >
+                          SIN GUARDAR
+                        </span>
+                      }
+                    </div>
+
+                    <h4 class="font-semibold text-slate-900 mt-1">
+                      {{ doc.fileName }}
+                    </h4>
+
+                    <p class="text-sm text-slate-500 mt-1">
+                      {{ doc.sizeLabel }}
+                    </p>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  (click)="removeDocument(doc.id)"
+                  class="h-9 w-9 rounded-lg hover:bg-red-50 text-slate-400 hover:text-red-500 transition"
+                >
+                  <i class="pi pi-trash"></i>
+                </button>
+              </div>
+
+              <div class="border-t border-dashed border-slate-200 mt-4 pt-4">
+                @if (doc.type === 'criminal_record') {
+                  <div class="grid grid-cols-1 md:grid-cols-[230px_1fr] gap-4">
+                    <div>
+                      <label class="text-sm font-medium text-slate-900">
+                        Vence el <span class="text-red-500">*</span>
+                      </label>
+
+                      <p-datepicker
+                        [(ngModel)]="doc.expirationDate"
+                        [ngModelOptions]="{ standalone: true }"
+                        placeholder="Obligatorio"
+                        [appendTo]="'body'"
+                        styleClass="w-full mt-2 custom-datepicker"
+                      />
+
+                      @if (formSubmitted && !doc.expirationDate) {
+                        <p-message severity="error" size="small" variant="simple">
+                          La fecha de vencimiento es obligatoria.
+                        </p-message>
+                      }
+                    </div>
+
+                    <div>
+                      <label class="text-sm font-medium text-slate-900">Notas</label>
+                      <input
+                        pInputText
+                        [(ngModel)]="doc.notes"
+                        [ngModelOptions]="{ standalone: true }"
+                        placeholder="Observaciones (opcional)"
+                        class="mt-2 h-14 w-full rounded-xl border border-slate-300 px-4 text-slate-600 outline-none"
+                      />
+                    </div>
+                  </div>
+                } @else {
+                  <div>
+                    <label class="text-sm font-medium text-slate-900">Notas</label>
+                    <input
+                      pInputText
+                      [(ngModel)]="doc.notes"
+                      [ngModelOptions]="{ standalone: true }"
+                      placeholder="Observaciones (opcional)"
+                      class="mt-2 h-14 w-full rounded-xl border border-slate-300 px-4 text-slate-600 outline-none"
+                    />
+                  </div>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </section>
+
+  <section class="bg-card rounded-2xl border border-border shadow-sm overflow-hidden mt-4">
+    <div
+      class="flex items-start justify-between gap-3 px-6 pt-5 pb-4 border-b border-border/60 flex-wrap"
+    >
+      <div class="flex items-center gap-2.5">
+        <i class="pi pi-exclamation-circle text-primary text-lg"></i>
+        <div>
+          <h2 class="text-base font-semibold text-primary">Contacto de Emergencia</h2>
+          <p class="text-xs text-muted-foreground mt-0.5">
+            Persona a contactar en caso de emergencia
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="pt-0 grid gap-4 md:grid-cols-3 pt-6 px-6 pb-6">
+      <div class="flex flex-col gap-1">
+        <label for="emergency_contact_name" class="text-sm font-medium flex items-start"
+          >Nombre del contacto
+          @if (isRequired('emergency_contact_name')) {
+            <span class="flex text-[#ef4343] items-center ml-1 self-center">*</span>
+          }
+        </label>
+        <input
+          pInputText
+          placeholder="Nombre del contacto de emergencia"
+          formControlName="emergency_contact_name"
+          [invalid]="isInvalid('emergency_contact_name')"
+          class="mt-2 h-14 w-full rounded-xl border border-slate-300 px-4 text-slate-600 outline-none"
+        />
+        @if (isInvalid('emergency_contact_name')) {
+          <p-message severity="error" size="small" variant="simple"
+            >Nombre del contacto es requerido.</p-message
+          >
+        }
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label for="emergency_contact_relationship" class="text-sm font-medium flex items-start"
+          >Relación con el contacto
+          @if (isRequired('emergency_contact_relationship')) {
+            <span class="flex text-[#ef4343] items-center ml-1 self-center">*</span>
+          }
+        </label>
+        <input
+          pInputText
+          placeholder="Ej: Padre, Madre, Esposo/a, Hermano/a"
+          formControlName="emergency_contact_relationship"
+          [invalid]="isInvalid('emergency_contact_relationship')"
+          class="mt-2 h-14 w-full rounded-xl border border-slate-300 px-4 text-slate-600 outline-none"
+        />
+        @if (isInvalid('emergency_contact_relationship')) {
+          <p-message severity="error" size="small" variant="simple"
+            >Relación con el contacto es requerida.</p-message
+          >
+        }
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label for="emergency_contact_phone" class="text-sm font-medium flex items-start"
+          >Teléfono del contacto
+          @if (isRequired('emergency_contact_phone')) {
+            <span class="flex text-[#ef4343] items-center ml-1 self-center">*</span>
+          }
+        </label>
+        <p-inputMask
+          mask="(999) 9999-9999"
+          placeholder="Ej: (504) 2222-2222"
+          class="w-full mt-2 custom-inputmask"
+          inputId="emergency_contact_phone"
+          autocomplete="off"
+          [autoClear]="false"
+          slotChar=""
+          formControlName="emergency_contact_phone"
+          type="text"
+          name="emergency_contact_phone"
+          id="emergency_contact_phone"
+        />
+
+        @if (isInvalid('emergency_contact_phone')) {
+          @if (form.get('emergency_contact_phone')?.errors?.['required']) {
+            <p-message severity="error" size="small" variant="simple"
+              >Teléfono del contacto es requerido.</p-message
+            >
+          }
+          @if (form.get('emergency_contact_phone')?.errors?.['pattern']) {
+            <p-message severity="error" size="small" variant="simple"
+              >Formato de teléfono no valido.</p-message
+            >
+          }
+        }
+      </div>
+    </div>
+  </section>
+
+  <div class="flex items-center justify-end gap-2 pt-3">
+    <p-button
+      label="Cancelar"
+      variant="outlined"
+      severity="primary"
+      [outlined]="true"
+      size="large"
+      styleClass="text-bold"
+    >
+      <i class="pi pi-times" pButtonIcon></i>
+    </p-button>
+
+    <p-button
+      label="Crear empleado"
+      severity="primary"
+      size="large"
+      type="submit"
+      styleClass="text-bold p-button-relleno"
+    >
+      <i class="pi pi-check" pButtonIcon></i>
+    </p-button>
+  </div>
+</form>

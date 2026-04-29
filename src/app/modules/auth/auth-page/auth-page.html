@@ -102,7 +102,7 @@
 
         <div class="relative">
           <input
-            type="password"
+            [type]="showPassword ? 'text' : 'password'"
             class="w-full px-5 py-4 rgb(236 242 255 / 50%) border border-[#374151] rounded-2xl text-[#181818] text-[0.95rem] transition-all duration-200 ease-in-out placeholder:text-[#6b7280] focus:outline-none"
             placeholder="Password"
             formControlName="password"

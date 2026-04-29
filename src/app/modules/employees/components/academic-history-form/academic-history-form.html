@@ -1,0 +1,184 @@
+<div class="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden mt-5">
+  <!-- HEADER -->
+  <div class="flex items-center justify-between px-7 py-6 border-b border-slate-200">
+    <div class="flex items-start gap-3">
+      <i class="pi pi-graduation-cap text-slate-900 mt-1"></i>
+
+      <div>
+        <h2 class="text-lg font-bold text-slate-900 leading-none">Historial Académico</h2>
+        <p class="text-sm text-slate-500 mt-2">Estudios del empleado por años</p>
+      </div>
+    </div>
+
+    <button
+      type="button"
+      class="h-12 px-6 rounded-xl bg-blue-500 cursor-pointer hover:bg-blue-600 text-white font-semibold flex items-center gap-2"
+      (click)="addStudy()"
+    >
+      <span class="text-2xl leading-none">+</span>
+      Agregar estudio
+    </button>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="p-7">
+    <!-- VACÍO -->
+    @if (academicHistory.length === 0) {
+      <div
+        class="min-h-[320px] rounded-2xl border-2 border-dashed border-slate-300 flex flex-col items-center justify-center text-center"
+      >
+        <div class="w-16 h-16 rounded-2xl bg-slate-200 flex items-center justify-center mb-5">
+          <i class="pi pi-graduation-cap text-slate-900"></i>
+        </div>
+
+        <h3 class="text-lg font-bold text-slate-900">Sin estudios registrados</h3>
+
+        <p class="text-slate-500 mt-2">Agrega títulos, diplomados o cursos por año</p>
+
+        <button
+          type="button"
+          class="mt-6 h-14 px-7 rounded-xl border border-blue-500 text-blue-500 font-semibold flex items-center gap-2 hover:bg-blue-50 cursor-pointer"
+          (click)="addStudy()"
+        >
+          <span class="text-2xl leading-none">+</span>
+          Agregar primer estudio
+        </button>
+      </div>
+    }
+
+    <!-- LISTADO -->
+    @if (academicHistory.length > 0) {
+      <!-- 👇 IMPORTANTE (SOLUCIÓN ERROR) -->
+      <div [formGroup]="parentForm">
+        <div formArrayName="academicHistory" class="space-y-6">
+          @for (study of academicHistory.controls; track $index) {
+            <div [formGroupName]="$index" class="rounded-2xl border border-slate-200 p-6">
+              <!-- HEADER ITEM -->
+              <div class="flex items-center justify-between mb-7">
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-10 h-10 rounded-xl bg-slate-200 flex items-center justify-center font-bold"
+                  >
+                    {{ $index + 1 }}
+                  </div>
+
+                  <h3 class="font-bold text-slate-900">
+                    {{ getHeader($index) }}
+                  </h3>
+                </div>
+
+                <button
+                  type="button"
+                  class="text-red-500 hover:text-red-600 cursor-pointer"
+                  (click)="removeStudy($index)"
+                >
+                  <i class="pi pi-trash"></i>
+                </button>
+              </div>
+
+              <!-- GRID -->
+              <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- NIVEL -->
+                <div>
+                  <label class="font-semibold text-slate-900">
+                    Nivel <span class="text-red-500">*</span>
+                  </label>
+
+                  <p-select
+                    formControlName="level"
+                    [options]="levels"
+                    optionLabel="name"
+                    placeholder="Seleccionar nivel"
+                    appendTo="body"
+                    styleClass="w-full h-14 rounded-xl  mt-2 input-like-select"
+                  />
+                </div>
+
+                <!-- INSTITUCIÓN   class="mt-2 h-14 w-full rounded-xl border border-slate-300 px-4 text-slate-600 outline-none " -->
+                <div>
+                  <label class="font-semibold text-slate-900">
+                    Institución <span class="text-red-500">*</span>
+                  </label>
+
+                  <input
+                    formControlName="institution"
+                    placeholder="Ej: UNAH"
+                    class="mt-2 h-14 w-full rounded-xl border border-slate-300 px-4 text-slate-600 outline-none"
+                  />
+                </div>
+
+                <!-- CARRERA -->
+                <div>
+                  <label class="font-semibold text-slate-900"> Carrera / Área </label>
+
+                  <input
+                    formControlName="career"
+                    placeholder="Ej: Ingeniería en Sistemas"
+                    class="mt-2 h-14 w-full rounded-xl border border-slate-300 px-4 text-slate-600 outline-none"
+                  />
+                </div>
+
+                <!-- TÍTULO -->
+                <div>
+                  <label class="font-semibold text-slate-900"> Título obtenido </label>
+
+                  <input
+                    formControlName="title"
+                    placeholder="Ej: Licenciado"
+                    class="mt-2 h-14 w-full rounded-xl border border-slate-300 px-4 text-slate-600 outline-none"
+                  />
+                </div>
+
+                <!-- AÑO INICIO -->
+                <div>
+                  <label class="font-semibold text-slate-900">
+                    Año inicio <span class="text-red-500">*</span>
+                  </label>
+
+                  <input
+                    type="number"
+                    formControlName="startYear"
+                    class="mt-2 h-14 w-full rounded-xl border border-slate-300 px-4 text-slate-600 outline-none"
+                  />
+                </div>
+
+                <!-- AÑO FIN -->
+                <div>
+                  <label class="font-semibold text-slate-900"> Año fin </label>
+
+                  <input
+                    type="number"
+                    formControlName="endYear"
+                    class="mt-2 h-14 w-full rounded-xl border border-slate-300 px-4 text-slate-600 outline-none disabled:bg-slate-50"
+                  />
+                </div>
+              </div>
+
+              <!-- CHECK -->
+              <label class="flex items-center gap-3 mt-5 text-slate-900">
+                <input
+                  type="checkbox"
+                  formControlName="inProgress"
+                  class="w-5 h-5 accent-blue-500"
+                  (change)="onInProgressChange($index)"
+                />
+                Estudio en curso
+              </label>
+
+              <!-- NOTAS -->
+              <div class="mt-5">
+                <label class="font-semibold text-slate-900"> Notas </label>
+
+                <input
+                  formControlName="notes"
+                  placeholder="Observaciones"
+                  class="mt-2 h-14 w-full rounded-xl border border-slate-300 px-4 text-slate-600 outline-none"
+                />
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</div>
